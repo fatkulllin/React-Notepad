@@ -3,11 +3,41 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+const defaultState = {
+  notes: [],
+}
+
+const notepadReducer = (state = defaultState, action) => {
+
+  switch (action.type) {
+    case "ADD_NOTE":
+      return { ...state, notes: [...state.notes, action.payload] }
+    case "EDIT_NOTE":
+      return {
+        ...state, notes: state.notes.map((elem, index) => {
+          if (index === action.editNoteIndex) {
+            elem = action.payload
+          }
+          return elem
+        })
+      }
+    case "REMOVE_NOTE":
+      return { ...state, notes: state.notes.filter(notes => notes !== action.payload) }
+
+    default:
+      return state
+  }
+}
+
+export const store = createStore(notepadReducer)
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.content{
+  width: 500px;
+  height: 300px;
+  margin: auto;
+  display: flex;
+}
+.content textarea{
+  margin-left: 10px;
+  width: 400px;
+  height: 250px;
+}
+.button{
+  width: 100px;
+  height: 50px;
+  margin-left: 100px;
+}
+ul{
+  padding-left: 10px;
+}
